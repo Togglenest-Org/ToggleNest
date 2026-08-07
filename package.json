@@ -1,0 +1,19 @@
+{
+  "name": "togglenest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+  "dev": "concurrently \"npm run server --prefix server\" \"npm run dev --prefix client\"",
+  "install-all": "npm install && npm install --prefix server && npm install --prefix client",
+  "server": "npm run dev --prefix server",
+  "client": "npm run dev --prefix client"
+           }
+  ,"keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^10.0.4"
+  }
+}
