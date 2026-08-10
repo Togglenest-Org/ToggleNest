@@ -1,0 +1,459 @@
+import { Link, Navigate } from 'react-router-dom';
+import {
+  Activity,
+  CalendarClock,
+  Check,
+  ChevronRight,
+  GripVertical,
+  KanbanSquare,
+  Layers,
+  Medal,
+  MessageSquare,
+  Plus,
+  Sparkles,
+  Users,
+  Zap,
+} from 'lucide-react';
+import MarketingLayout from '../../components/layout/MarketingLayout';
+import { buttonClassName } from '../../components/ui/buttonClassName';
+import Badge from '../../components/ui/Badge';
+import { useAuth } from '../../context/AuthContext';
+
+function MiniCard({ title, accent = 'bg-neutral-200' }) {
+  return (
+    <div className="group flex items-start gap-2 rounded-md border border-neutral-200 bg-white p-2.5 shadow-sm transition hover:border-neutral-300 hover:shadow">
+      <GripVertical className="mt-0.5 h-3.5 w-3.5 shrink-0 text-neutral-300" />
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-xs font-medium text-neutral-800">{title}</p>
+        <div className="mt-2 flex items-center gap-1.5">
+          <span className={`h-2 w-2 rounded-full ${accent}`} />
+          <span className="h-1.5 flex-1 rounded-full bg-neutral-100" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MiniList({ title, count, cards }) {
+  return (
+    <div className="w-[168px] shrink-0 rounded-lg bg-neutral-100 p-2">
+      <div className="mb-2 flex items-center justify-between px-1">
+        <p className="text-xs font-semibold text-neutral-700">{title}</p>
+        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-neutral-200 text-[10px] font-semibold text-neutral-500">
+          {count}
+        </span>
+      </div>
+      <div className="space-y-2">{cards}</div>
+    </div>
+  );
+}
+
+function ProductMockup() {
+  return (
+    <div className="animate-fade-in-up relative mx-auto mt-16 w-full max-w-4xl" style={{ animationDelay: '150ms' }}>
+      <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[40px] bg-gradient-to-tr from-cyan-200/50 via-transparent to-orange-200/50 blur-2xl" />
+
+      <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl shadow-neutral-900/10">
+        {/* Window chrome */}
+        <div className="flex items-center gap-3 border-b border-neutral-200 bg-neutral-50 px-4 py-3">
+          <div className="flex gap-1.5">
+            <span className="h-3 w-3 rounded-full bg-rose-300" />
+            <span className="h-3 w-3 rounded-full bg-amber-300" />
+            <span className="h-3 w-3 rounded-full bg-emerald-300" />
+          </div>
+          <div className="mx-auto flex items-center gap-2 rounded-md bg-white px-3 py-1 text-xs text-neutral-400 ring-1 ring-neutral-200">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            app.togglenest.com
+          </div>
+          <div className="hidden h-6 w-6 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-semibold text-white sm:flex">
+            AM
+          </div>
+        </div>
+
+        {/* Board */}
+        <div className="bg-gradient-to-br from-sky-500 to-indigo-600 p-4">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="flex h-8 w-8 items-center justify-center rounded-md bg-black/20 text-white">
+                <KanbanSquare className="h-4 w-4" />
+              </span>
+              <div>
+                <p className="text-sm font-semibold text-white">Product Roadmap</p>
+                <p className="text-[11px] text-white/70">Product Team workspace</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="hidden items-center gap-1.5 rounded-md bg-black/20 px-2 py-1 text-[11px] font-medium text-white sm:flex">
+                <Users className="h-3 w-3" /> 12 members
+              </div>
+              <span className="rounded-md bg-white px-2 py-1 text-[11px] font-semibold text-indigo-600">Share</span>
+            </div>
+          </div>
+
+          <div className="flex gap-3 overflow-hidden">
+            <MiniList
+              title="To Do"
+              count={3}
+              cards={
+                <>
+                  <MiniCard title="Scope the dashboard" accent="bg-cyan-400" />
+                  <MiniCard title="Gather team feedback" accent="bg-amber-400" />
+                </>
+              }
+            />
+            <MiniList
+              title="In Progress"
+              count={2}
+              cards={<MiniCard title="Update project roadmap" accent="bg-violet-400" />}
+            />
+            <MiniList
+              title="Done"
+              count={4}
+              cards={<MiniCard title="Finalize onboarding copy" accent="bg-emerald-400" />}
+            />
+            <div className="flex h-14 w-[168px] shrink-0 items-center justify-center rounded-lg bg-black/20 text-sm font-medium text-white transition hover:bg-black/30">
+              <Plus className="mr-1.5 h-4 w-4" /> Add a list
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Floating stat chips */}
+      <div className="animate-fade-in-up absolute -left-4 top-1/3 hidden rounded-xl border border-neutral-200 bg-white p-3 shadow-xl shadow-neutral-900/10 lg:block" style={{ animationDelay: '350ms' }}>
+        <div className="flex items-center gap-2">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
+            <Zap className="h-4 w-4" />
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-neutral-900">95% velocity</p>
+            <p className="text-[11px] text-neutral-500">Above sprint target</p>
+          </div>
+        </div>
+      </div>
+      <div className="animate-fade-in-up absolute -right-4 top-1/4 hidden rounded-xl border border-neutral-200 bg-white p-3 shadow-xl shadow-neutral-900/10 lg:block" style={{ animationDelay: '500ms' }}>
+        <div className="flex items-center gap-2">
+          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-100 text-amber-600">
+            <Check className="h-4 w-4" />
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-neutral-900">27 tasks done</p>
+            <p className="text-[11px] text-neutral-500">This week</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const features = [
+  {
+    icon: KanbanSquare,
+    title: 'Visual boards',
+    description: 'Organize work into drag-and-drop boards, lists, and cards that match how your team thinks.',
+  },
+  {
+    icon: Users,
+    title: 'Team collaboration',
+    description: 'Share boards, assign owners, and keep everyone aligned from kickoff to launch.',
+  },
+  {
+    icon: CalendarClock,
+    title: 'Deadlines that stick',
+    description: 'Attach due dates to cards so priorities stay visible and nothing slips through the cracks.',
+  },
+  {
+    icon: Activity,
+    title: 'Live activity feed',
+    description: 'See every move, comment, and update in real time so context is never lost.',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Comments & mentions',
+    description: 'Discuss work right on the card and pull teammates into the conversation with @mentions.',
+  },
+  {
+    icon: Layers,
+    title: 'Endless customization',
+    description: 'Labels, checklists, custom fields — adapt ToggleNest to your workflow, not the other way around.',
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      'ToggleNest replaced three tools for us. Our roadmap went from a slide deck nobody read to a living board the whole company checks.',
+    name: 'Sara Chen',
+    role: 'Head of Product, Northwind',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
+  },
+  {
+    quote:
+      'The drag-and-drop is buttery smooth. Our weekly planning meetings are 30 minutes shorter now.',
+    name: 'Marcus Reid',
+    role: 'Engineering Lead, Loopwave',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
+  },
+  {
+    quote:
+      'It is simple enough for a two-person startup and powerful enough for our 40-person team. Hard balance to hit.',
+    name: 'Priya Nair',
+    role: 'COO, Brightfield',
+    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
+  },
+];
+
+const pricing = [
+  {
+    name: 'Free',
+    price: '$0',
+    period: 'forever',
+    description: 'For individuals getting started.',
+    features: ['Up to 5 open boards', 'Unlimited cards', 'Drag-and-drop boards', 'Basic activity feed'],
+    cta: 'Get started',
+    highlight: false,
+  },
+  {
+    name: 'Pro',
+    price: '$8',
+    period: 'per user / month',
+    description: 'For teams that need room to scale.',
+    features: ['Unlimited boards', 'Advanced automation', 'Priority support', 'Full activity history', 'Workspace analytics'],
+    cta: 'Upgrade to Pro',
+    highlight: true,
+  },
+  {
+    name: 'Enterprise',
+    price: 'Custom',
+    period: 'tailored for you',
+    description: 'For organizations with advanced needs.',
+    features: ['SSO & SAML', 'Audit logs', 'Dedicated success manager', 'Custom data residency'],
+    cta: 'Contact sales',
+    highlight: false,
+  },
+];
+
+export default function LandingPage() {
+  const { isAuthenticated } = useAuth();
+
+  if (isAuthenticated) {
+    return <Navigate to="/organization" replace />;
+  }
+
+  return (
+    <MarketingLayout>
+      {/* Hero */}
+      <section className="relative overflow-hidden px-4 pb-20 pt-16 md:pt-24">
+        <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-1.5 text-sm font-semibold text-amber-700">
+            <Medal className="h-4 w-4" />
+            No. 1 task management platform
+          </div>
+
+          <h1 className="animate-fade-in-up mt-6 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl md:text-6xl" style={{ animationDelay: '50ms' }}>
+            ToggleNest helps your team{' '}
+            <span className="bg-gradient-to-r from-cyan-500 to-orange-500 bg-clip-text text-transparent">
+              move work forward
+            </span>
+          </h1>
+
+          <p className="animate-fade-in-up mt-6 max-w-2xl text-base leading-relaxed text-neutral-500 md:text-lg" style={{ animationDelay: '100ms' }}>
+            Collaborate, manage projects, and reach new productivity peaks. From high rises to home
+            offices — accomplish it all with ToggleNest.
+          </p>
+
+          <div className="animate-fade-in-up mt-8 flex flex-col items-center gap-3 sm:flex-row" style={{ animationDelay: '150ms' }}>
+            <Link to="/register" className={buttonClassName({ size: 'lg', className: 'w-full sm:w-auto' })}>
+              Get ToggleNest for free
+              <ChevronRight className="ml-2 h-4 w-4" />
+            </Link>
+            <a
+              href="#features"
+              className={buttonClassName({ size: 'lg', variant: 'outline', className: 'w-full sm:w-auto' })}
+            >
+              See what it does
+            </a>
+          </div>
+
+          <p className="animate-fade-in-up mt-5 text-xs text-neutral-400" style={{ animationDelay: '200ms' }}>
+            Free forever · No credit card required · Set up in minutes
+          </p>
+        </div>
+
+        <ProductMockup />
+      </section>
+
+      {/* Trust strip */}
+      <section className="border-y border-neutral-200 bg-white px-4 py-10">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
+            Trusted by fast-moving teams at
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-lg font-semibold text-neutral-300">
+            <span className="transition hover:text-neutral-400">Northwind</span>
+            <span className="transition hover:text-neutral-400">Loopwave</span>
+            <span className="transition hover:text-neutral-400">Brightfield</span>
+            <span className="transition hover:text-neutral-400">Kinetic</span>
+            <span className="transition hover:text-neutral-400">Solaris</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section id="features" className="scroll-mt-16 px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400">Features</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
+              Everything you need to plan, track, and ship
+            </h2>
+            <p className="mt-4 text-neutral-500">
+              ToggleNest keeps your whole workflow in one calm, focused place.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature) => {
+              const Icon = feature.icon;
+              return (
+                <div
+                  key={feature.title}
+                  className="group rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-lg hover:shadow-neutral-900/5"
+                >
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-700 transition group-hover:bg-neutral-900 group-hover:text-white">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-4 text-lg font-semibold text-neutral-900">{feature.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-neutral-500">{feature.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section id="testimonials" className="scroll-mt-16 border-y border-neutral-200 bg-white px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400">Testimonials</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
+              Loved by teams who move fast
+            </h2>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {testimonials.map((item) => (
+              <figure
+                key={item.name}
+                className="flex flex-col rounded-xl border border-neutral-200 bg-slate-50 p-6 transition duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-neutral-900/5"
+              >
+                <Sparkles className="h-5 w-5 text-amber-400" />
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-neutral-700">
+                  “{item.quote}”
+                </blockquote>
+                <figcaption className="mt-6 flex items-center gap-3">
+                  <img src={item.avatar} alt={item.name} className="h-10 w-10 rounded-full object-cover" />
+                  <div>
+                    <p className="text-sm font-semibold text-neutral-900">{item.name}</p>
+                    <p className="text-xs text-neutral-500">{item.role}</p>
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="scroll-mt-16 px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400">Pricing</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
+              Simple pricing that scales with you
+            </h2>
+            <p className="mt-4 text-neutral-500">Start free. Upgrade when your team needs more room.</p>
+          </div>
+
+          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            {pricing.map((tier) => (
+              <div
+                key={tier.name}
+                className={
+                  tier.highlight
+                    ? 'relative flex flex-col rounded-xl border-2 border-neutral-900 bg-neutral-900 p-6 text-white shadow-xl shadow-neutral-900/10'
+                    : 'flex flex-col rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition duration-200 hover:shadow-lg hover:shadow-neutral-900/5'
+                }
+              >
+                {tier.highlight ? (
+                  <span className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 px-3 py-1 text-xs font-bold text-white">
+                    Most popular
+                  </span>
+                ) : null}
+                <h3 className={`text-lg font-semibold ${tier.highlight ? 'text-white' : 'text-neutral-900'}`}>
+                  {tier.name}
+                </h3>
+                <div className="mt-4 flex items-baseline gap-2">
+                  <span className="text-4xl font-bold tracking-tight">{tier.price}</span>
+                  <span className={`text-sm ${tier.highlight ? 'text-neutral-300' : 'text-neutral-500'}`}>
+                    {tier.period}
+                  </span>
+                </div>
+                <p className={`mt-3 text-sm ${tier.highlight ? 'text-neutral-300' : 'text-neutral-500'}`}>
+                  {tier.description}
+                </p>
+                <ul className="mt-6 flex-1 space-y-3">
+                  {tier.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-sm">
+                      <Check className={`mt-0.5 h-4 w-4 shrink-0 ${tier.highlight ? 'text-cyan-400' : 'text-emerald-500'}`} />
+                      <span className={tier.highlight ? 'text-neutral-100' : 'text-neutral-700'}>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/register"
+                  className={
+                    tier.highlight
+                      ? 'mt-8 inline-flex h-10 items-center justify-center rounded-md bg-white px-4 text-sm font-medium text-neutral-900 transition hover:bg-neutral-100'
+                      : 'mt-8 inline-flex h-10 items-center justify-center rounded-md border border-neutral-300 px-4 text-sm font-medium text-neutral-900 transition hover:border-neutral-900'
+                  }
+                >
+                  {tier.cta}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="px-4 pb-20">
+        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl bg-neutral-900 px-6 py-16 text-center shadow-2xl shadow-neutral-900/20">
+          <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl" />
+          <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-orange-500/20 blur-3xl" />
+          <h2 className="relative text-3xl font-bold tracking-tight text-white md:text-4xl">
+            Ready to move work forward?
+          </h2>
+          <p className="relative mx-auto mt-4 max-w-xl text-neutral-300">
+            Join thousands of teams organizing their best work with ToggleNest. Free forever — start today.
+          </p>
+          <Link
+            to="/register"
+            className="relative mt-8 inline-flex h-11 items-center justify-center rounded-md bg-gradient-to-r from-cyan-500 to-orange-500 px-8 text-sm font-semibold text-white transition hover:opacity-90"
+          >
+            Get ToggleNest for free
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Link>
+          <div className="relative mt-6 flex items-center justify-center gap-2">
+            <Badge variant="success" className="bg-white/10 text-emerald-300">
+              <Check className="h-3 w-3" /> Free forever
+            </Badge>
+            <Badge variant="info" className="bg-white/10 text-sky-300">
+              <Zap className="h-3 w-3" /> Set up in minutes
+            </Badge>
+          </div>
+        </div>
+      </section>
+    </MarketingLayout>
+  );
+}
