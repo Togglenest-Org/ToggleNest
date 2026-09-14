@@ -10,7 +10,6 @@ import {
   Settings,
   Shield,
   User,
-  CreditCard,
   FolderKanban,
 } from 'lucide-react';
 import { cn } from '../../lib/utils';
@@ -29,7 +28,6 @@ const workspaceRoutes = [
 const manageRoutes = [
   { label: 'Profile', icon: User, path: '/profile', end: true },
   { label: 'Settings', icon: Settings, path: '/organization/settings', end: true },
-  { label: 'Billing', icon: CreditCard, path: '/organization/billing', end: true },
 ];
 
 function SidebarLink({ route }) {

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Clock3 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Clock3, History } from 'lucide-react';
 import PageLayout from '../../components/layout/PageLayout';
 import PageHeader from '../../components/ui/PageHeader';
 import Card from '../../components/ui/Card';
@@ -37,30 +37,40 @@ export default function Dashboard() {
 
         <div className="grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
           <Card title="Recent activity">
-            <div className="space-y-3">
-              {recentActivity.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-start gap-3 rounded-lg bg-neutral-50 p-4 transition hover:bg-neutral-100"
-                >
-                  <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-semibold text-white">
-                    {item.member.charAt(0)}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm text-neutral-700">{item.text}</p>
-                    <p className="mt-0.5 text-xs text-neutral-400">{item.time}</p>
-                  </div>
+            {recentActivity.length === 0 ? (
+              <div className="flex flex-col items-center justify-center rounded-lg border border-dashed border-neutral-200 bg-neutral-50 py-10 text-center">
+                <History className="h-6 w-6 text-neutral-300" />
+                <p className="mt-2 text-sm font-medium text-neutral-600">No activity yet</p>
+                <p className="mt-0.5 text-xs text-neutral-400">Recent activity will appear here.</p>
+              </div>
+            ) : (
+              <>
+                <div className="space-y-3">
+                  {recentActivity.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex items-start gap-3 rounded-lg bg-neutral-50 p-4 transition hover:bg-neutral-100"
+                    >
+                      <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-semibold text-white">
+                        {item.member.charAt(0)}
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm text-neutral-700">{item.text}</p>
+                        <p className="mt-0.5 text-xs text-neutral-400">{item.time}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-            <div className="mt-4">
-              <Link
-                to="/organization/activity"
-                className="inline-flex items-center gap-1 text-sm font-medium text-neutral-700 transition hover:text-neutral-900"
-              >
-                View all activity <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
-            </div>
+                <div className="mt-4">
+                  <Link
+                    to="/organization/activity"
+                    className="inline-flex items-center gap-1 text-sm font-medium text-neutral-700 transition hover:text-neutral-900"
+                  >
+                    View all activity <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </>
+            )}
           </Card>
 
           <div className="space-y-6">

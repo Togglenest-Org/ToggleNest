@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import {
   Activity,
   CalendarClock,
-  CreditCard,
   FolderKanban,
   KanbanSquare,
   Layout,
@@ -30,7 +29,6 @@ const navLinks = [
   { label: 'Activity', icon: Activity, to: '/organization/activity' },
   { label: 'Profile', icon: User, to: '/profile' },
   { label: 'Settings', icon: Settings, to: '/organization/settings' },
-  { label: 'Billing', icon: CreditCard, to: '/organization/billing' },
 ];
 
 export default function PlatformNavbar() {

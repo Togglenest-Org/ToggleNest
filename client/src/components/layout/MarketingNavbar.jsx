@@ -4,11 +4,7 @@ import { GitBranch, Menu, X } from 'lucide-react';
 import Logo from '../Logo';
 import { buttonClassName } from '../ui/buttonClassName';
 
-const navLinks = [
-  { label: 'Features', href: '#features' },
-  { label: 'Product', href: '#product' },
-  { label: 'Testimonials', href: '#testimonials' },
-];
+const navLinks = [];
 
 export default function MarketingNavbar() {
   const [open, setOpen] = useState(false);
@@ -35,17 +31,8 @@ export default function MarketingNavbar() {
             Login
           </Link>
           <Link to="/register" className={buttonClassName({ size: 'sm' })}>
-            Get ToggleNest for free
+            Sign Up
           </Link>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer noopener"
-            className={buttonClassName({ size: 'icon', variant: 'ghost' })}
-            aria-label="ToggleNest on GitHub"
-          >
-            <GitBranch className="h-4 w-4" />
-          </a>
         </div>
 
         <button
@@ -76,7 +63,7 @@ export default function MarketingNavbar() {
                 Login
               </Link>
               <Link to="/register" className={buttonClassName({ size: 'sm', className: 'flex-1' })}>
-                Get started
+                Sign Up
               </Link>
             </div>
           </div>

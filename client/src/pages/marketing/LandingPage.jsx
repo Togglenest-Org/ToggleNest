@@ -261,199 +261,22 @@ export default function LandingPage() {
             offices — accomplish it all with ToggleNest.
           </p>
 
-          <div className="animate-fade-in-up mt-8 flex flex-col items-center gap-3 sm:flex-row" style={{ animationDelay: '150ms' }}>
+          <div className="animate-fade-in-up mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row w-full" style={{ animationDelay: '150ms' }}>
+            <Link to="/login" className={buttonClassName({ size: 'lg', variant: 'outline', className: 'w-full sm:w-auto' })}>
+              Sign In
+            </Link>
             <Link to="/register" className={buttonClassName({ size: 'lg', className: 'w-full sm:w-auto' })}>
-              Get ToggleNest for free
+              Sign Up
               <ChevronRight className="ml-2 h-4 w-4" />
             </Link>
-            <a
-              href="#features"
-              className={buttonClassName({ size: 'lg', variant: 'outline', className: 'w-full sm:w-auto' })}
-            >
-              See what it does
-            </a>
           </div>
 
           <p className="animate-fade-in-up mt-5 text-xs text-neutral-400" style={{ animationDelay: '200ms' }}>
             Free forever · No credit card required · Set up in minutes
           </p>
         </div>
-
-        <ProductMockup />
       </section>
 
-      {/* Trust strip */}
-      <section className="border-y border-neutral-200 bg-white px-4 py-10">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-400">
-            Trusted by fast-moving teams at
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-lg font-semibold text-neutral-300">
-            <span className="transition hover:text-neutral-400">Northwind</span>
-            <span className="transition hover:text-neutral-400">Loopwave</span>
-            <span className="transition hover:text-neutral-400">Brightfield</span>
-            <span className="transition hover:text-neutral-400">Kinetic</span>
-            <span className="transition hover:text-neutral-400">Solaris</span>
-          </div>
-        </div>
-      </section>
-
-      {/* Features */}
-      <section id="features" className="scroll-mt-16 px-4 py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400">Features</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-              Everything you need to plan, track, and ship
-            </h2>
-            <p className="mt-4 text-neutral-500">
-              ToggleNest keeps your whole workflow in one calm, focused place.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={feature.title}
-                  className="group rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition duration-200 hover:-translate-y-1 hover:border-neutral-300 hover:shadow-lg hover:shadow-neutral-900/5"
-                >
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-lg bg-neutral-100 text-neutral-700 transition group-hover:bg-neutral-900 group-hover:text-white">
-                    <Icon className="h-5 w-5" />
-                  </span>
-                  <h3 className="mt-4 text-lg font-semibold text-neutral-900">{feature.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-neutral-500">{feature.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section id="testimonials" className="scroll-mt-16 border-y border-neutral-200 bg-white px-4 py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400">Testimonials</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-              Loved by teams who move fast
-            </h2>
-          </div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <figure
-                key={item.name}
-                className="flex flex-col rounded-xl border border-neutral-200 bg-slate-50 p-6 transition duration-200 hover:-translate-y-1 hover:shadow-lg hover:shadow-neutral-900/5"
-              >
-                <Sparkles className="h-5 w-5 text-amber-400" />
-                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-neutral-700">
-                  “{item.quote}”
-                </blockquote>
-                <figcaption className="mt-6 flex items-center gap-3">
-                  <img src={item.avatar} alt={item.name} className="h-10 w-10 rounded-full object-cover" />
-                  <div>
-                    <p className="text-sm font-semibold text-neutral-900">{item.name}</p>
-                    <p className="text-xs text-neutral-500">{item.role}</p>
-                  </div>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="scroll-mt-16 px-4 py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-400">Pricing</p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 md:text-4xl">
-              Simple pricing that scales with you
-            </h2>
-            <p className="mt-4 text-neutral-500">Start free. Upgrade when your team needs more room.</p>
-          </div>
-
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {pricing.map((tier) => (
-              <div
-                key={tier.name}
-                className={
-                  tier.highlight
-                    ? 'relative flex flex-col rounded-xl border-2 border-neutral-900 bg-neutral-900 p-6 text-white shadow-xl shadow-neutral-900/10'
-                    : 'flex flex-col rounded-xl border border-neutral-200 bg-white p-6 shadow-sm transition duration-200 hover:shadow-lg hover:shadow-neutral-900/5'
-                }
-              >
-                {tier.highlight ? (
-                  <span className="absolute -top-3 left-6 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 px-3 py-1 text-xs font-bold text-white">
-                    Most popular
-                  </span>
-                ) : null}
-                <h3 className={`text-lg font-semibold ${tier.highlight ? 'text-white' : 'text-neutral-900'}`}>
-                  {tier.name}
-                </h3>
-                <div className="mt-4 flex items-baseline gap-2">
-                  <span className="text-4xl font-bold tracking-tight">{tier.price}</span>
-                  <span className={`text-sm ${tier.highlight ? 'text-neutral-300' : 'text-neutral-500'}`}>
-                    {tier.period}
-                  </span>
-                </div>
-                <p className={`mt-3 text-sm ${tier.highlight ? 'text-neutral-300' : 'text-neutral-500'}`}>
-                  {tier.description}
-                </p>
-                <ul className="mt-6 flex-1 space-y-3">
-                  {tier.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2 text-sm">
-                      <Check className={`mt-0.5 h-4 w-4 shrink-0 ${tier.highlight ? 'text-cyan-400' : 'text-emerald-500'}`} />
-                      <span className={tier.highlight ? 'text-neutral-100' : 'text-neutral-700'}>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/register"
-                  className={
-                    tier.highlight
-                      ? 'mt-8 inline-flex h-10 items-center justify-center rounded-md bg-white px-4 text-sm font-medium text-neutral-900 transition hover:bg-neutral-100'
-                      : 'mt-8 inline-flex h-10 items-center justify-center rounded-md border border-neutral-300 px-4 text-sm font-medium text-neutral-900 transition hover:border-neutral-900'
-                  }
-                >
-                  {tier.cta}
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="px-4 pb-20">
-        <div className="relative mx-auto max-w-4xl overflow-hidden rounded-2xl bg-neutral-900 px-6 py-16 text-center shadow-2xl shadow-neutral-900/20">
-          <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-orange-500/20 blur-3xl" />
-          <h2 className="relative text-3xl font-bold tracking-tight text-white md:text-4xl">
-            Ready to move work forward?
-          </h2>
-          <p className="relative mx-auto mt-4 max-w-xl text-neutral-300">
-            Join thousands of teams organizing their best work with ToggleNest. Free forever — start today.
-          </p>
-          <Link
-            to="/register"
-            className="relative mt-8 inline-flex h-11 items-center justify-center rounded-md bg-gradient-to-r from-cyan-500 to-orange-500 px-8 text-sm font-semibold text-white transition hover:opacity-90"
-          >
-            Get ToggleNest for free
-            <ChevronRight className="ml-2 h-4 w-4" />
-          </Link>
-          <div className="relative mt-6 flex items-center justify-center gap-2">
-            <Badge variant="success" className="bg-white/10 text-emerald-300">
-              <Check className="h-3 w-3" /> Free forever
-            </Badge>
-            <Badge variant="info" className="bg-white/10 text-sky-300">
-              <Zap className="h-3 w-3" /> Set up in minutes
-            </Badge>
-          </div>
-        </div>
-      </section>
     </MarketingLayout>
   );
 }

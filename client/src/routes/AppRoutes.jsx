@@ -11,7 +11,6 @@ import ProfilePage from '../pages/profile/ProfilePage';
 import BoardsPage from '../pages/organization/BoardsPage';
 import ActivityPage from '../pages/organization/ActivityPage';
 import SettingsPage from '../pages/organization/SettingsPage';
-import BillingPage from '../pages/organization/BillingPage';
 import BoardPage from '../pages/board/BoardPage';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -26,7 +25,6 @@ export default function AppRoutes() {
       <Route path="/organization" element={<ProtectedRoute><BoardsPage /></ProtectedRoute>} />
       <Route path="/organization/activity" element={<ProtectedRoute><ActivityPage /></ProtectedRoute>} />
       <Route path="/organization/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
-      <Route path="/organization/billing" element={<ProtectedRoute><BillingPage /></ProtectedRoute>} />
       <Route path="/board/:boardId" element={<ProtectedRoute><BoardPage /></ProtectedRoute>} />
 
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />

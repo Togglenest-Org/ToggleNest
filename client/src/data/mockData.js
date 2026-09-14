@@ -112,12 +112,7 @@ export const initialBoardLists = {
   ],
 };
 
-export const activityLog = [
-  { id: 1, text: 'Alex created board "Product Roadmap"', time: '2 hours ago', member: 'Alex' },
-  { id: 2, text: 'Jordan moved "Scope the dashboard" to In Progress', time: '4 hours ago', member: 'Jordan' },
-  { id: 3, text: 'Lina added card "Gather team feedback"', time: 'Yesterday', member: 'Lina' },
-  { id: 4, text: 'Mia completed "Finalize onboarding copy"', time: 'Yesterday', member: 'Mia' },
-];
+export const activityLog = [];
 
 export const dashboardStats = [
   { title: 'Active Projects', value: '14', detail: 'Healthy delivery pipeline', delta: '+2 this month' },
@@ -126,12 +121,7 @@ export const dashboardStats = [
   { title: 'Team Velocity', value: '95%', detail: 'Above sprint target', delta: '+8% vs last sprint' },
 ];
 
-export const recentActivity = [
-  { id: 1, text: 'Lina moved "Sprint planning" into In Progress.', time: '12m ago', member: 'Lina' },
-  { id: 2, text: 'A new project "Growth launch" was created.', time: '1h ago', member: 'Jordan' },
-  { id: 3, text: 'Jordan assigned "Review design feedback" to the design team.', time: '3h ago', member: 'Jordan' },
-  { id: 4, text: 'Mia completed "Finalize onboarding copy".', time: 'Yesterday', member: 'Mia' },
-];
+export const recentActivity = [];
 
 export const upcomingDeadlines = [
   { id: 1, title: 'Finalize scope', due: 'Today', priority: 'High' },
