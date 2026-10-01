@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GitBranch, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Logo from '../Logo';
 import { buttonClassName } from '../ui/buttonClassName';
 
@@ -27,9 +27,6 @@ export default function MarketingNavbar() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Link to="/login" className={buttonClassName({ size: 'sm', variant: 'ghost' })}>
-            Login
-          </Link>
           <Link to="/register" className={buttonClassName({ size: 'sm' })}>
             Sign Up
           </Link>
@@ -59,9 +56,6 @@ export default function MarketingNavbar() {
               </a>
             ))}
             <div className="mt-3 flex gap-2">
-              <Link to="/login" className={buttonClassName({ size: 'sm', variant: 'outline', className: 'flex-1' })}>
-                Login
-              </Link>
               <Link to="/register" className={buttonClassName({ size: 'sm', className: 'flex-1' })}>
                 Sign Up
               </Link>

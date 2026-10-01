@@ -1,5 +1,5 @@
 import { cn } from '../../lib/utils';
-import { buttonClassName, sizes, variants } from './buttonClassName';
+import { sizes, variants } from './buttonClassName';
 
 export default function Button({
   children,

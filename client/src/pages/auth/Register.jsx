@@ -32,9 +32,15 @@ export default function Register() {
       setError('Password must be at least 6 characters.');
       return;
     }
-    const response = await authService.register(form);
-    login(response.user, response.token);
-    navigate('/organization');
+    setError('');
+    try {
+      const response = await authService.register(form);
+      const { _id, name, email, token } = response;
+      login({ _id, name, email }, token);
+      navigate('/organization');
+    } catch (err) {
+      setError(err.message || 'Registration failed.');
+    }
   };
 
   return (

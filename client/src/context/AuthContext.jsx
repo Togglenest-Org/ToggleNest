@@ -2,18 +2,38 @@ import { createContext, useContext, useMemo, useState } from 'react';
 
 const AuthContext = createContext(null);
 
+const TOKEN_KEY = 'togglNest_token';
+const USER_KEY = 'togglNest_user';
+
+const readUser = () => {
+  if (typeof window === 'undefined') return null;
+  const storedUser = localStorage.getItem(USER_KEY);
+  if (!storedUser) return null;
+  try {
+    return JSON.parse(storedUser);
+  } catch {
+    return null;
+  }
+};
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUser] = useState(readUser);
+  const [token, setToken] = useState(() =>
+    typeof window === 'undefined' ? null : localStorage.getItem(TOKEN_KEY),
+  );
 
   const login = (userData, jwtToken) => {
     setUser(userData);
     setToken(jwtToken);
+    localStorage.setItem(TOKEN_KEY, jwtToken);
+    localStorage.setItem(USER_KEY, JSON.stringify(userData));
   };
 
   const logout = () => {
     setUser(null);
     setToken(null);
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
   };
 
   const value = useMemo(

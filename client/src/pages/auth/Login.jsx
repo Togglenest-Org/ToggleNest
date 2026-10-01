@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { ArrowLeft, KeyRound, Mail } from 'lucide-react';
+import { ArrowLeft, Mail } from 'lucide-react';
+import { cn } from '../../lib/utils';
 import Logo from '../../components/Logo';
 import Button from '../../components/ui/Button';
+import { buttonClassName } from '../../components/ui/buttonClassName';
 import Input from '../../components/ui/Input';
 import { useAuth } from '../../context/AuthContext';
 import authService from '../../services/authService';
@@ -28,9 +30,15 @@ export default function Login() {
       setError('Please fill in both email and password.');
       return;
     }
-    const response = await authService.login(form);
-    login(response.user, response.token);
-    navigate('/organization');
+    setError('');
+    try {
+      const response = await authService.login(form);
+      const { _id, name, email, token } = response;
+      login({ _id, name, email }, token);
+      navigate('/organization');
+    } catch (err) {
+      setError(err.message || 'Sign in failed.');
+    }
   };
 
   return (
@@ -73,22 +81,15 @@ export default function Login() {
               <p className="rounded-md bg-rose-50 px-3 py-2 text-sm text-rose-600">{error}</p>
             ) : null}
 
-            <Button className="w-full" type="submit">
-              Continue
-            </Button>
           </form>
 
-          <div className="mt-6 flex items-center justify-between text-sm text-neutral-500">
-            <Link to="/forgot-password" className="inline-flex items-center gap-1 transition hover:text-neutral-900">
-              <KeyRound className="h-3.5 w-3.5" /> Forgot password?
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            <Button variant="outline" type="button" onClick={handleSubmit}>
+              Sign in
+            </Button>
+            <Link to="/register" className={cn(buttonClassName(), 'gap-1')}>
+              <Mail className="h-3.5 w-3.5" /> Sign up
             </Link>
-            <Link to="/register" className="inline-flex items-center gap-1 font-medium transition hover:text-neutral-900">
-              <Mail className="h-3.5 w-3.5" /> Create account
-            </Link>
-          </div>
-
-          <div className="mt-6 rounded-md bg-slate-50 px-4 py-3 text-center text-xs text-neutral-400">
-            Demo mode — any email and password will sign you in.
           </div>
         </div>
       </div>

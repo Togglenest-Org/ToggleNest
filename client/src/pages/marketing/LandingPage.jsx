@@ -1,22 +1,16 @@
 import { Link, Navigate } from 'react-router-dom';
 import {
-  Activity,
-  CalendarClock,
   Check,
   ChevronRight,
   GripVertical,
   KanbanSquare,
-  Layers,
   Medal,
-  MessageSquare,
   Plus,
-  Sparkles,
   Users,
   Zap,
 } from 'lucide-react';
 import MarketingLayout from '../../components/layout/MarketingLayout';
 import { buttonClassName } from '../../components/ui/buttonClassName';
-import Badge from '../../components/ui/Badge';
 import { useAuth } from '../../context/AuthContext';
 
 function MiniCard({ title, accent = 'bg-neutral-200' }) {
@@ -50,7 +44,7 @@ function MiniList({ title, count, cards }) {
 
 function ProductMockup() {
   return (
-    <div className="animate-fade-in-up relative mx-auto mt-16 w-full max-w-4xl" style={{ animationDelay: '150ms' }}>
+    <div className="animate-fade-in-up relative mx-auto mt-16 w-full max-w-4xl" style={{ animationDelay: '250ms' }}>
       <div className="pointer-events-none absolute -inset-8 -z-10 rounded-[40px] bg-gradient-to-tr from-cyan-200/50 via-transparent to-orange-200/50 blur-2xl" />
 
       <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-2xl shadow-neutral-900/10">
@@ -145,93 +139,6 @@ function ProductMockup() {
   );
 }
 
-const features = [
-  {
-    icon: KanbanSquare,
-    title: 'Visual boards',
-    description: 'Organize work into drag-and-drop boards, lists, and cards that match how your team thinks.',
-  },
-  {
-    icon: Users,
-    title: 'Team collaboration',
-    description: 'Share boards, assign owners, and keep everyone aligned from kickoff to launch.',
-  },
-  {
-    icon: CalendarClock,
-    title: 'Deadlines that stick',
-    description: 'Attach due dates to cards so priorities stay visible and nothing slips through the cracks.',
-  },
-  {
-    icon: Activity,
-    title: 'Live activity feed',
-    description: 'See every move, comment, and update in real time so context is never lost.',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Comments & mentions',
-    description: 'Discuss work right on the card and pull teammates into the conversation with @mentions.',
-  },
-  {
-    icon: Layers,
-    title: 'Endless customization',
-    description: 'Labels, checklists, custom fields — adapt ToggleNest to your workflow, not the other way around.',
-  },
-];
-
-const testimonials = [
-  {
-    quote:
-      'ToggleNest replaced three tools for us. Our roadmap went from a slide deck nobody read to a living board the whole company checks.',
-    name: 'Sara Chen',
-    role: 'Head of Product, Northwind',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop',
-  },
-  {
-    quote:
-      'The drag-and-drop is buttery smooth. Our weekly planning meetings are 30 minutes shorter now.',
-    name: 'Marcus Reid',
-    role: 'Engineering Lead, Loopwave',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop',
-  },
-  {
-    quote:
-      'It is simple enough for a two-person startup and powerful enough for our 40-person team. Hard balance to hit.',
-    name: 'Priya Nair',
-    role: 'COO, Brightfield',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop',
-  },
-];
-
-const pricing = [
-  {
-    name: 'Free',
-    price: '$0',
-    period: 'forever',
-    description: 'For individuals getting started.',
-    features: ['Up to 5 open boards', 'Unlimited cards', 'Drag-and-drop boards', 'Basic activity feed'],
-    cta: 'Get started',
-    highlight: false,
-  },
-  {
-    name: 'Pro',
-    price: '$8',
-    period: 'per user / month',
-    description: 'For teams that need room to scale.',
-    features: ['Unlimited boards', 'Advanced automation', 'Priority support', 'Full activity history', 'Workspace analytics'],
-    cta: 'Upgrade to Pro',
-    highlight: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: 'tailored for you',
-    description: 'For organizations with advanced needs.',
-    features: ['SSO & SAML', 'Audit logs', 'Dedicated success manager', 'Custom data residency'],
-    cta: 'Contact sales',
-    highlight: false,
-  },
-];
-
 export default function LandingPage() {
   const { isAuthenticated } = useAuth();
 
@@ -261,7 +168,7 @@ export default function LandingPage() {
             offices — accomplish it all with ToggleNest.
           </p>
 
-          <div className="animate-fade-in-up mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row w-full" style={{ animationDelay: '150ms' }}>
+          <div className="animate-fade-in-up mt-8 flex w-full flex-col items-center justify-center gap-3 sm:flex-row" style={{ animationDelay: '150ms' }}>
             <Link to="/login" className={buttonClassName({ size: 'lg', variant: 'outline', className: 'w-full sm:w-auto' })}>
               Sign In
             </Link>
@@ -275,8 +182,9 @@ export default function LandingPage() {
             Free forever · No credit card required · Set up in minutes
           </p>
         </div>
-      </section>
 
+        <ProductMockup />
+      </section>
     </MarketingLayout>
   );
 }
