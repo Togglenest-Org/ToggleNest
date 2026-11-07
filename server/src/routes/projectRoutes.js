@@ -1,5 +1,6 @@
 import express from 'express';
-import { createProject, getProjects, getProjectById } from '../controllers/projectController.js';
+// Added updateProject and deleteProject to the import
+import { createProject, getProjects, getProjectById, updateProject, deleteProject } from '../controllers/projectController.js';
 import { protect } from '../middleware/auth.js';
 
 const router = express.Router();
@@ -12,6 +13,8 @@ router.route('/')
   .get(getProjects);
 
 router.route('/:id')
-  .get(getProjectById);
+  .get(getProjectById)
+  .put(updateProject)    // <-- Added this for frontend updates
+  .delete(deleteProject); // <-- Added this for frontend deletions
 
 export default router;

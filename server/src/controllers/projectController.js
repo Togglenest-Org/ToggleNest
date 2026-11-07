@@ -56,3 +56,41 @@ export const getProjectById = async (req, res) => {
     res.status(500).json({ message: 'Error fetching project', error: error.message });
   }
 };
+
+// @desc    Update a project
+// @route   PUT (or PATCH) /api/projects/:id
+export const updateProject = async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) return res.status(404).json({ message: 'Project not found' });
+    
+    // Security: Only the owner can update the project
+    if (project.owner.toString() !== req.user.toString()) {
+      return res.status(403).json({ message: 'Not authorized to update this project' });
+    }
+
+    const updatedProject = await Project.findByIdAndUpdate(req.params.id, req.body,{ returnDocument: 'after' });
+    res.status(200).json(updatedProject);
+  } catch (error) {
+    res.status(500).json({ message: 'Error updating project', error: error.message });
+  }
+};
+
+// @desc    Delete a project
+// @route   DELETE /api/projects/:id
+export const deleteProject = async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    if (!project) return res.status(404).json({ message: 'Project not found' });
+
+    // Security: Only the owner can delete the project
+    if (project.owner.toString() !== req.user.toString()) {
+      return res.status(403).json({ message: 'Not authorized to delete this project' });
+    }
+
+    await Project.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: 'Project deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Error deleting project', error: error.message });
+  }
+};
